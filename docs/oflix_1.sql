@@ -60,6 +60,30 @@ CREATE TABLE `artwork_genre` (
   `genre_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `artwork_genre`
+--
+
+INSERT INTO `artwork_genre` (`artwork_id`, `genre_id`) VALUES
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 9),
+(2, 1),
+(2, 3),
+(2, 7),
+(2, 10),
+(2, 13),
+(2, 15),
+(3, 4),
+(3, 7),
+(3, 13),
+(4, 3),
+(4, 7),
+(4, 10),
+(4, 13),
+(4, 15);
+
 -- --------------------------------------------------------
 
 --
