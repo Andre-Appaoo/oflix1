@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost
--- Généré le : jeu. 21 déc. 2023 à 13:06
--- Version du serveur : 10.11.3-MariaDB-1:10.11.3+maria~ubu2004
--- Version de PHP : 8.2.6
+-- Hôte : 127.0.0.1
+-- Généré le : jeu. 21 déc. 2023 à 20:50
+-- Version du serveur : 10.4.28-MariaDB
+-- Version de PHP : 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,49 +52,30 @@ INSERT INTO `artwork` (`id`, `type_id`, `title`, `release_date`, `duration`, `su
 -- --------------------------------------------------------
 
 --
--- Structure de la table `artwork_genres`
+-- Structure de la table `artwork_genre`
 --
 
-CREATE TABLE `artwork_genres` (
+CREATE TABLE `artwork_genre` (
   `artwork_id` int(11) NOT NULL,
-  `genres_id` int(11) NOT NULL
+  `genre_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `doctrine_migration_versions`
+-- Structure de la table `genre`
 --
 
-CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-
---
--- Déchargement des données de la table `doctrine_migration_versions`
---
-
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20231221122939', '2023-12-21 12:29:53', 281);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `genres`
---
-
-CREATE TABLE `genres` (
+CREATE TABLE `genre` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `genres`
+-- Déchargement des données de la table `genre`
 --
 
-INSERT INTO `genres` (`id`, `name`) VALUES
+INSERT INTO `genre` (`id`, `name`) VALUES
 (1, 'Action'),
 (2, 'Animation'),
 (3, 'Aventure'),
@@ -143,23 +124,17 @@ ALTER TABLE `artwork`
   ADD KEY `IDX_881FC576C54C8C93` (`type_id`);
 
 --
--- Index pour la table `artwork_genres`
+-- Index pour la table `artwork_genre`
 --
-ALTER TABLE `artwork_genres`
-  ADD PRIMARY KEY (`artwork_id`,`genres_id`),
-  ADD KEY `IDX_5518F604DB8FFA4` (`artwork_id`),
-  ADD KEY `IDX_5518F6046A3B2603` (`genres_id`);
+ALTER TABLE `artwork_genre`
+  ADD PRIMARY KEY (`artwork_id`,`genre_id`),
+  ADD KEY `IDX_12BA5BE2DB8FFA4` (`artwork_id`),
+  ADD KEY `IDX_12BA5BE24296D31F` (`genre_id`);
 
 --
--- Index pour la table `doctrine_migration_versions`
+-- Index pour la table `genre`
 --
-ALTER TABLE `doctrine_migration_versions`
-  ADD PRIMARY KEY (`version`);
-
---
--- Index pour la table `genres`
---
-ALTER TABLE `genres`
+ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -179,9 +154,9 @@ ALTER TABLE `artwork`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `genres`
+-- AUTO_INCREMENT pour la table `genre`
 --
-ALTER TABLE `genres`
+ALTER TABLE `genre`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
@@ -201,11 +176,11 @@ ALTER TABLE `artwork`
   ADD CONSTRAINT `FK_881FC576C54C8C93` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`);
 
 --
--- Contraintes pour la table `artwork_genres`
+-- Contraintes pour la table `artwork_genre`
 --
-ALTER TABLE `artwork_genres`
-  ADD CONSTRAINT `FK_5518F6046A3B2603` FOREIGN KEY (`genres_id`) REFERENCES `genres` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_5518F604DB8FFA4` FOREIGN KEY (`artwork_id`) REFERENCES `artwork` (`id`) ON DELETE CASCADE;
+ALTER TABLE `artwork_genre`
+  ADD CONSTRAINT `FK_12BA5BE24296D31F` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_12BA5BE2DB8FFA4` FOREIGN KEY (`artwork_id`) REFERENCES `artwork` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

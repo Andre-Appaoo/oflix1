@@ -3,19 +3,19 @@
 namespace App\Controller;
 
 use App\Repository\ArtworkRepository;
-use App\Repository\GenresRepository;
+use App\Repository\GenreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    private GenresRepository $genresRepository;
+    private GenreRepository $genreRepository;
     private ArtworkRepository $artworkRepository;
 
-    public function __construct(GenresRepository $genresRepository, ArtworkRepository $artworkRepository)
+    public function __construct(GenreRepository $genreRepository, ArtworkRepository $artworkRepository)
     {
-        $this->genresRepository = $genresRepository;
+        $this->genreRepository = $genreRepository;
         $this->artworkRepository = $artworkRepository;
     }
 
@@ -23,7 +23,7 @@ class MainController extends AbstractController
     public function index(): Response
     {
         return $this->render('main/index.html.twig', [
-            'genreList' => $this->genresRepository->findAll(),
+            'genreList' => $this->genreRepository->findAll(),
             'artworkList' => $this->artworkRepository->findAll()
         ]);
     }

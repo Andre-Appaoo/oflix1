@@ -41,7 +41,7 @@ class Artwork
     #[ORM\JoinColumn(nullable: false)]
     private ?Type $type = null;
 
-    #[ORM\ManyToMany(targetEntity: Genres::class, inversedBy: 'artworks')]
+    #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'artworks')]
     private Collection $genres;
 
     public function __construct()
@@ -151,14 +151,14 @@ class Artwork
     }
 
     /**
-     * @return Collection<int, Genres>
+     * @return Collection<int, Genre>
      */
     public function getGenres(): Collection
     {
         return $this->genres;
     }
 
-    public function addGenre(Genres $genre): static
+    public function addGenre(Genre $genre): static
     {
         if (!$this->genres->contains($genre)) {
             $this->genres->add($genre);
@@ -167,7 +167,7 @@ class Artwork
         return $this;
     }
 
-    public function removeGenre(Genres $genre): static
+    public function removeGenre(Genre $genre): static
     {
         $this->genres->removeElement($genre);
 
