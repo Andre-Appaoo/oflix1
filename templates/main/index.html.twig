@@ -3,9 +3,8 @@
 {% block title %}O'flix{% endblock %}
 
 {% block body %}
-    {{ dump(artworkList) }}
 <div class="my-5 py-5 text-center">
-    <img src="favicon.png" height="100" alt="Logo O'flix" class="mb-3">
+    <img src="{{ asset('favicon.png') }}" height="100" alt="Logo O'flix" class="mb-3">
     <h1 class="display-6 fw-bold">Films, séries TV et popcorn en illimité.</h1>
     <div class="col-lg-6 mx-auto">
         <p class="lead mb-4 text-muted">Où que vous soyez. Gratuit pour toujours.</p>
@@ -29,32 +28,32 @@
 
             <h2 class="text-muted fw-bold mb-4">Les nouveautés</h2>
 
-             {% for artwork in artworkList %}
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
-                <div class="col-4 movie__poster"{# style="background-image: url(https://m.media-amazon.com/images/M/MV5BNThmZGY4NzgtMTM4OC00NzNkLWEwNmEtMjdhMGY5YTc1NDE4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg);"#}>
-                    {#<img src="images/poster-placeholder.png" class="img-fluid">#}
-                    <img src="{{ artwork.poster }}" class="img-fluid">
-                </div>
-                <div class="col-8 p-4 d-flex flex-column position-static">
-                    <a href="./favorites.html" class="movie__favorite fs-1 my-2 mx-3 link-danger"><i class="bi bi-bookmark-plus"></i></a>
-                    <strong class="d-inline-block mb-2 text-primary">Film</strong>
-                    <h3 class="mb-1">{{ artwork.title }}</h3>
-                    <div class="mb-1 text-muted">{{ artwork.duration }} min</div>
-                    <p><small>{{ artwork.summary }}</small>
-                    </p>
-                    <div class="d-flex" style="color: orange;">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                        <span class="ps-1">{{ artwork.rating }}</span>
+            {% for artwork in artworkList %}
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
+                    <div class="col-4 movie__poster"{# style="background-image: url(https://m.media-amazon.com/images/M/MV5BNThmZGY4NzgtMTM4OC00NzNkLWEwNmEtMjdhMGY5YTc1NDE4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg);#}">
+                        {#<img src="images/poster-placeholder.png" class="img-fluid">#}
+                        <img src="{{ artwork.poster }}" class="img-fluid">
                     </div>
-                    <a href="{{ path('app_artwork-show', { 'id': artwork.id }) }}" class="fs-1 mt-3 text-danger align-self-start">
-                        <i class="bi bi-arrow-right-square"></i>
-                    </a>
+                    <div class="col-8 p-4 d-flex flex-column position-static">
+                        <a href="./favorites.html" class="movie__favorite fs-1 my-2 mx-3 link-danger"><i class="bi bi-bookmark-plus"></i></a>
+                        <strong class="d-inline-block mb-2 text-primary">Film</strong>
+                        <h3 class="mb-1">{{ artwork.title }}</h3>
+                        <div class="mb-1 text-muted">{{ artwork.duration }} min</div>
+                        <p><small>{{ artwork.summary }}</small>
+                        </p>
+                        <div class="d-flex" style="color: orange;">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <span class="ps-1">{{ artwork.rating }}</span>
+                        </div>
+                        <a href="{{ path('app_artwork-show', { 'id': artwork.id }) }}" class="fs-1 mt-3 text-danger align-self-start">
+                            <i class="bi bi-arrow-right-square"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
 
